@@ -30,7 +30,7 @@
                         out.println("<h1>Text:</h1>");
                         out.println("<p>" + request.getAttribute("text") +"</p>");
                     }
-}
+
                 %>
             </div>
         </div>
