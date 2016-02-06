@@ -25,6 +25,13 @@
                         <input type="submit" value="Extract">
                     </form> <br/>
                 </div>
+                <%
+                    if (request.getAttribute("text") != null){
+                        out.println("<h1>Text:</h1>");
+                        out.println("<p>" + request.getAttribute("text") +"</p>");
+                    }
+}
+                %>
             </div>
         </div>
     </body>
