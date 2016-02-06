@@ -26,9 +26,12 @@
                     </form> <br/>
                 </div>
                 <%
-                    if (request.getAttribute("text") != null){
+                      if (request.getAttribute("text") != null){
                         out.println("<h1>Text:</h1>");
-                        out.println("<p>" + request.getAttribute("text") +"</p>");
+						String textStr[] = request.getAttribute("text").split("\\r?\\n");
+						for (int i = 0; i < textStr.length; i++){
+							our.println("<p>" + textStr[i] + "</p>");
+						}
                     }
 
                 %>
