@@ -11,8 +11,8 @@
 			<input type="submit" value="Submit">
 		</form>
 		<%
-			if (request.getParameter("sample") != null){
-				out.println("<h1>" + request.getParameter("sample") + "</h1>");
+			if (request.getAttribute("sample") != null){
+				out.println("<h1>" + request.getAttribute("sample") + "</h1>");
 			}
 		%>
 	</body>
