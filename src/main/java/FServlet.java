@@ -10,44 +10,18 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "FServlet", urlPatterns = {"/FServlet"})
 public class FServlet extends HttpServlet {
-
- protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, Exception  {
-   	System.out.println("Upload Servlet");
+	
+	@Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        	System.out.println("Upload Servlet");
     	
     	request.setAttribute("sample","This is the Servlet!");
     	
         response.setContentType("text/html");
         response.setStatus(200);
         request.getRequestDispatcher("index.jsp").forward(request, response);
-    }
-	
-	@Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
 
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(FServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-	
-	@Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(FServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-	 @Override
-    public String getServletInfo() {
-        return "Short description";
     }
 
 }
