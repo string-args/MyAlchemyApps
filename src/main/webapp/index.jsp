@@ -18,29 +18,6 @@
                         <input type="text" name="furl" value="www.ibm.com" size="110">
                         <input type="submit" value="Extract">
                     </form> <br/>
-                    <p> Extract the following features: </p> <br/>
-                    <table style="width: 40%;">
-                        <tr>
-                            <td><input type="checkbox" name="entities" > Entities</td>
-                            <td><input type="checkbox" name="sentiments" > Sentiments </td>
-                        </tr>
-                        <tr>
-                            <td> <input type="checkbox" name="keywords" > Keywords </td>
-                            <td><input type="checkbox" name="concepts" > Concepts </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="relation" > Relation </td>
-                            <td><input type="checkbox" name="taxonomy" > Taxonomy</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="author" > Author </td>
-                            <td><input type="checkbox" name="language" > Language </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="text" > Text</td>
-                            <td><input type="checkbox" name="feeds" > Feeds </td>
-                        </tr>
-                    </table> <br/><br/>
                 </div>
                 <div id="content2">
                     <form action="/IServet" method="POST">
