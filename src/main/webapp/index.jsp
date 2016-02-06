@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 	<body>
 		<h1> Hello World! </h1>
-		<form action="/src/main/java/FServlet" method="POST">
+		<form action="FServlet" method="POST">
 			<input type="submit" value="Submit">
 		</form>
 		<%
