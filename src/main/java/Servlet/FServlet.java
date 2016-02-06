@@ -23,10 +23,10 @@ public class FServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        AlchemyConnector connector = new AlchemyConnector();
+        //AlchemyConnector connector = new AlchemyConnector();
         
         AlchemyLanguage service = new AlchemyLanguage();
-        service.setApiKey(connector.getAPIKey());
+        service.setApiKey("7c2d04db1c11cd0f7860fb4388e7c558f5e699ba");
         
         String furl = request.getParameter("furl");
         
