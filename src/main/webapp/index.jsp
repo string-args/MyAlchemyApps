@@ -7,5 +7,13 @@
 <meta charset="utf-8">
 	<body>
 		<h1> Hello World! </h1>
+		<form action="/src/main/java/FServlet" method="POST">
+			<input type="submit" value="Submit">
+		</form>
+		<%
+			if (request.getParameter("sample") != null){
+				out.println("<h1>" + request.getParameter("sample") + "</h1>");
+			}
+		%>
 	</body>
 </html>
