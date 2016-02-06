@@ -28,7 +28,7 @@
                 <%
                       if (request.getAttribute("text") != null){
                         out.println("<h1>Text:</h1>");
-					    out.println("<p>" +  + "</p>");
+					    out.println("<p>" + request.getAttribute("text") + "</p>");
                     }
 
                 %>
