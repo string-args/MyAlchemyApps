@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/css/mystyle.css"> 
+        <link rel="stylesheet" type="text/css" href="mystyle.css"> 
         <title>AlchemyAPI - Feature Extraction and Image Analysis</title>
     </head>
     <body>
@@ -14,7 +14,7 @@
             <label for="tab2"> Image Analysis </label>
             <div class ="content">
                 <div id ="content1">
-                    <form action="/MyAlchemyApp/FServlet" method="POST">
+                    <form action="FServlet" method="POST">
                         <input type="text" name="furl" value="www.ibm.com" size="110">
                         <input type="submit" value="Extract">
                     </form> <br/>
