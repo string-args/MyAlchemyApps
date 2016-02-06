@@ -28,10 +28,7 @@
                 <%
                       if (request.getAttribute("text") != null){
                         out.println("<h1>Text:</h1>");
-						String textStr[] = request.getAttribute("text").split("\\r?\\n");
-						for (int i = 0; i < textStr.length; i++){
-							our.println("<p>" + textStr[i] + "</p>");
-						}
+					    out.println("<p>" +  + "</p>");
                     }
 
                 %>
