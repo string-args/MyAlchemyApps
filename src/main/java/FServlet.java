@@ -19,7 +19,7 @@ public class FServlet extends HttpServlet {
     	
         response.setContentType("text/html");
         response.setStatus(200);
-        response.sendRedirect("index.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 	
 	@Override
