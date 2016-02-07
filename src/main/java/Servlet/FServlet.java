@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 @WebServlet(name = "FServlet", urlPatterns = {"/FServlet"})
 public class FServlet extends HttpServlet {
@@ -35,9 +37,15 @@ public class FServlet extends HttpServlet {
         
         DocumentText text = service.getText(params);
 		
-		String[] array = text.toString().split(",");
-		
-        request.setAttribute("text", array[0]);
+		try{
+			JSONParser parser = new JSONParser();
+			JSONObject obj = (JSONObject) parser.parse(text.toString());
+			JSONObject parseText = (JSONObject) ((JSONArray) obj.get("text")).get(0);
+			request.setAttribute("text", parseText);
+		} catch (Exception e) {
+			e.printStackTrace(System.err);
+		}
+
         response.setContentType("text/html");
         response.setStatus(200);
         request.getRequestDispatcher("index.jsp").forward(request, response);
