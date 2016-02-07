@@ -40,7 +40,7 @@ public class FServlet extends HttpServlet {
 		try{
 			JSONParser parser = new JSONParser();
 			JSONObject obj = (JSONObject) parser.parse(text.toString());
-			JSONObject parseText = (JSONObject) ((JSONArray) obj.get("text")).get(0);
+			JSONObject parseText = (JSONObject) obj.get("text");
 			request.setAttribute("text", parseText);
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
