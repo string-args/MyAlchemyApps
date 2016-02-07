@@ -23,10 +23,10 @@ public class FServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        //AlchemyConnector connector = new AlchemyConnector();
+        AlchemyConnector connector = new AlchemyConnector();
         
         AlchemyLanguage service = new AlchemyLanguage();
-        service.setApiKey("7c2d04db1c11cd0f7860fb4388e7c558f5e699ba");
+        service.setApiKey(connector.getAPIKey());
         
         String furl = request.getParameter("furl");
         
@@ -34,8 +34,10 @@ public class FServlet extends HttpServlet {
         params.put(AlchemyLanguage.URL, furl);
         
         DocumentText text = service.getText(params);
-        request.setAttribute("text", text);
-
+		
+		String[] array = text.toString().split(",");
+		
+        request.setAttribute("text", array[0]);
         response.setContentType("text/html");
         response.setStatus(200);
         request.getRequestDispatcher("index.jsp").forward(request, response);
