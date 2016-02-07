@@ -37,6 +37,7 @@ public class FServlet extends HttpServlet {
         
         DocumentText text = service.getText(params);
 		
+<<<<<<< HEAD
 		try{
 			JSONParser parser = new JSONParser();
 			JSONObject obj = (JSONObject) parser.parse(text.toString());
@@ -46,6 +47,11 @@ public class FServlet extends HttpServlet {
 			e.printStackTrace(System.err);
 		}
 
+=======
+	
+		
+        request.setAttribute("text", text);
+>>>>>>> e17431ce0a6b40e79784bc35d0dedbbc41df8711
         response.setContentType("text/html");
         response.setStatus(200);
         request.getRequestDispatcher("index.jsp").forward(request, response);
