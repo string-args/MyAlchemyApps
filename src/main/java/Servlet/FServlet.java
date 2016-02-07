@@ -35,9 +35,9 @@ public class FServlet extends HttpServlet {
         
         DocumentText text = service.getText(params);
 		
-		String[] array = text.toString().split(",");
+	
 		
-        request.setAttribute("text", array[0]);
+        request.setAttribute("text", text);
         response.setContentType("text/html");
         response.setStatus(200);
         request.getRequestDispatcher("index.jsp").forward(request, response);
