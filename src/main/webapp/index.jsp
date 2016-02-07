@@ -26,12 +26,18 @@
                     </form> <br/>
                 </div>
                 <%
+<<<<<<< HEAD
                     
                     if (request.getAttribute("text") != null){
                         out.println("<h1>Text:</h1>");
 						out.println("<p>" + request.getAttribute("text") + "</p>");
+=======
+                      if (request.getAttribute("text") != null){
+                        out.println("<h1>Text:</h1>");
+					    out.println("<p>" + request.getAttribute("text") + "</p>");
+>>>>>>> f0499cbe3ed7e04a4674f4ddedd45538f95e7e8a
                     }
-}
+
                 %>
             </div>
         </div>
