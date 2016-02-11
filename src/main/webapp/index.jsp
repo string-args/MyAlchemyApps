@@ -27,8 +27,12 @@
                 </div>
                 <%
                       if (request.getAttribute("title") != null){
-						 out.println("<h1> Title: </h1>");
-						 out.println("<p>" + request.getAttribute("title") + "</p>");
+						out.println("<h1> Title: </h1>");
+						out.println("<p>" + request.getAttribute("title") + "</p>");
+					  }
+					  if (request.getAttribute("language") != null){
+						out.println("<h1> Language: </h1>");
+						out.println("<p>" + request.getAttribute("language") + "</p>");
 					  }
 					  if (request.getAttribute("text") != null){
                         out.println("<h1>Text:</h1>");

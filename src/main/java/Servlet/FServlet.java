@@ -4,6 +4,7 @@ import Bean.AlchemyConnector;
 import com.ibm.watson.developer_cloud.alchemy.v1.AlchemyLanguage;
 import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentText;
 import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentTitle;
+import com.ibm.watson.developer_cloud.alchemy.v1.model.Language;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +39,8 @@ public class FServlet extends HttpServlet {
         params.put(AlchemyLanguage.URL, furl);
         //For title
 		DocumentTitle title = service.getTitle(params);
+		//For language
+		Language language = service.getLanguage(params);
 		//For text
         DocumentText text = service.getText(params);
 		try{
@@ -45,7 +48,10 @@ public class FServlet extends HttpServlet {
 			//for title
 			JSONObject objtitle = (JSONObject) parser.parse(title.toString());
 			String parseTitle = (String) objtitle.get("title");
-			request.setAttribute("title", title);
+			request.setAttribute("title", parseTitle);
+			
+			//For language
+			request.setAttribute("language",language);
 			
 			//For text
 			JSONObject objtext = (JSONObject) parser.parse(text.toString());
