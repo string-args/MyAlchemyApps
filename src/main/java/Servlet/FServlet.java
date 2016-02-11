@@ -39,14 +39,11 @@ public class FServlet extends HttpServlet {
         DocumentText text = service.getText(params);
 		try{
 			JSONParser parser = new JSONParser();
-			//For title
-			JSONObject objtitle = (JSONObject) parser.parse(title.toString());
-			request.setAttribute("title",title);
 			//For text
 			JSONObject objtext = (JSONObject) parser.parse(text.toString());
 			String parseText = (String) objtext.get("text");
 			request.setAttribute("text", parseText);
-			
+			request.setAttribute("title", title);
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
 		}
