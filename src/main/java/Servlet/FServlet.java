@@ -29,18 +29,24 @@ public class FServlet extends HttpServlet {
         
         AlchemyLanguage service = new AlchemyLanguage();
         service.setApiKey(connector.getAPIKey());
-        
-        String furl = request.getParameter("furl");
-        
-        Map<String,Object> params = new HashMap<String,Object>();
+		
+		Map<String,Object> params = new HashMap<String,Object>();
         params.put(AlchemyLanguage.URL, furl);
-        
+        String furl = request.getParameter("furl");
+        //For title
+		DocumentTitle title = service.getTitle(params);
+		//For text
         DocumentText text = service.getText(params);
 		try{
 			JSONParser parser = new JSONParser();
-			JSONObject obj = (JSONObject) parser.parse(text.toString());
-			String parseText = (String) obj.get("text");
+			//For title
+			JSONObject objtitle = (JSONObject) parser.parse(title.toString());
+			request.setAttribute("title",title);
+			//For text
+			JSONObject objtext = (JSONObject) parser.parse(text.toString());
+			String parseText = (String) objtext.get("text");
 			request.setAttribute("text", parseText);
+			
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
 		}
