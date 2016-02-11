@@ -31,9 +31,11 @@ public class FServlet extends HttpServlet {
         AlchemyLanguage service = new AlchemyLanguage();
         service.setApiKey(connector.getAPIKey());
 		
+		//get url inputted by user
+		String furl = request.getParameter("furl");
+		
 		Map<String,Object> params = new HashMap<String,Object>();
         params.put(AlchemyLanguage.URL, furl);
-        String furl = request.getParameter("furl");
         //For title
 		DocumentTitle title = service.getTitle(params);
 		//For text
