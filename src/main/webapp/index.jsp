@@ -39,7 +39,10 @@
                         out.println("<h1>Text:</h1>");
 					    out.println("<p>" + request.getAttribute("text") + "</p>");
 					  }
-
+					  if (request.getAttribute("authors") != null){
+						out.println("<h1> Authors: </h1>");
+						out.println("<p>" + request.getAttribute("authors") + "</p>");
+					  }
                 %>
         </div>
     </body>

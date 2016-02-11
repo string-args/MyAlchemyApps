@@ -5,6 +5,7 @@ import com.ibm.watson.developer_cloud.alchemy.v1.AlchemyLanguage;
 import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentText;
 import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentTitle;
 import com.ibm.watson.developer_cloud.alchemy.v1.model.Language;
+import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentAuthors;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +44,9 @@ public class FServlet extends HttpServlet {
 		Language language = service.getLanguage(params);
 		//For text
         DocumentText text = service.getText(params);
+		//For authors
+		DocumentAuthors authors = service.getAuthors(params);
+		
 		try{
 			JSONParser parser = new JSONParser();
 			//for title
@@ -53,12 +57,15 @@ public class FServlet extends HttpServlet {
 			//For language
 			JSONObject objlang = (JSONObject) parser.parse(language.toString());
 			String parseLang = (String) objlang.get("language");
-			request.setAttribute("language",language);
+			request.setAttribute("language", parseLang);
 			
 			//For text
 			JSONObject objtext = (JSONObject) parser.parse(text.toString());
 			String parseText = (String) objtext.get("text");
 			request.setAttribute("text", parseText);
+			
+			//For authors
+			request.setAttribute("authors",authors);
 
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
