@@ -36,8 +36,15 @@ public class FServlet extends HttpServlet {
         params.put(AlchemyLanguage.URL, furl);
         
         DocumentText text = service.getText(params);
-		request.setAttribute("text",text);
-		
+	
+		try{
+			JSONParser parser = new JSONParser();
+			JSONObject obj = (JSONObject) parser.parse(text.toString());
+			JSONObject parseText = (JSONObject) obj.get("text");
+			request.setAttribute("text", parseText.toString());
+		} catch (Exception e) {
+			e.printStackTrace(System.err);
+		}
         response.setContentType("text/html");
         response.setStatus(200);
         request.getRequestDispatcher("index.jsp").forward(request, response);
