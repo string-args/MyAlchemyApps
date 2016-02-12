@@ -85,7 +85,6 @@ public class FServlet extends HttpServlet {
 				String parseConfident = (String) tax.get("confident");
 			    taxparams.put("Confident",parseConfident);
 			}
-
 			request.setAttribute("taxonomy", taxparams);
 
 		} catch (Exception e) {

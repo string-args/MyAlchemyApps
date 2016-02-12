@@ -39,14 +39,14 @@
 						out.println("<h1> Authors: </h1>");
 						out.println("<p>" + request.getAttribute("authors") + "</p>");
 					  }
-					  if (request.getAttribute("taxonomy") != null){
+					  
 						Map<String,String> taxmap = (HashMap) request.getAttribute("taxonomy");
 						List<String> keys = new ArrayList<String>(taxmap.keySet());
 						out.println("<h1> Taxonomies </h1>");
 						for(String key: keys){
 							out.println("<p>" + key + "-" + keys + "</p>");
 						}
-					  }
+					  
                     %>
                 </div>
                 <div id="content2">
