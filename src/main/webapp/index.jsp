@@ -19,7 +19,7 @@
             <div class ="content">
                 <div id ="content1">
                     <form action="FServlet" method="POST">
-                        <input type="text" name="furl" value="https://en.wikipedia.org/wiki/IBM" size="80">
+                        <input type="text" name="furl" size="80">
                         <input type="submit" value="Extract">
                     </form> <br/>
 					<%
