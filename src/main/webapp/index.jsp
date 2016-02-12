@@ -24,28 +24,26 @@
                     </form> <br/>
 					<%
                       if (request.getAttribute("title") != null){
-						out.println("<h1> Title: </h1>");
-						out.println("<p>" + request.getAttribute("title") + "</p>");
+						out.println("<h4> Title: </h4>" + request.getAttribute("title"));
+						
 					  }
 					  if (request.getAttribute("language") != null){
-						out.println("<h1> Language: </h1>");
-						out.println("<p>" + request.getAttribute("language") + "</p>");
-					  }
-					  if (request.getAttribute("text") != null){
-                        out.println("<h1>Text:</h1>");
-					    out.println("<p>" + request.getAttribute("text") + "</p>");
+						out.println("<h4> Language: </h4>"+ request.getAttribute("language"));
 					  }
 					  if (request.getAttribute("authors") != null){
-						out.println("<h1> Authors: </h1>");
-						out.println("<p>" + request.getAttribute("authors") + "</p>");
+						out.println("<h4 Authors: </h4>" + request.getAttribute("authors"));
+					  }
+					  if (request.getAttribute("text") != null){
+                        out.println("<h4>Text:</h4>");
+					    out.println("<p style = 'font-size: 10px;'> " + request.getAttribute("text") + "</p>");
 					  }
 					  if (request.getAttribute("taxonomy") != null){
-						out.println("<h1> Taxonomy </h1>");
-						out.println("<p>" + request.getAttribute("taxonomy") + "</p>");
+						out.println("<h4> Taxonomy </h4>");
+						out.println("<p style = 'font-size: 10px;'>" + request.getAttribute("taxonomy") + "</p>");
 					  } 
 					  if (request.getAttribute("concepts") != null){
-						out.println("<h1> Concepts: </h1>");
-						out.println("p>" + request.getAttribute("concepts") + "</p>");
+						out.println("<h4> Concepts: </h4>");
+						out.println("<p style = 'font-size: 10px;'>" + request.getAttribute("concepts") + "</p>");
 					  }
                     %>
                 </div>
