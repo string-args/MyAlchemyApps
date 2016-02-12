@@ -40,10 +40,7 @@
 						out.println("<p>" + request.getAttribute("authors") + "</p>");
 					  }
 					  if (request.getAttribute("taxonomy") != null){
-						ArrayList<String> taxmap = (ArrayList) request.getAttribute("taxonomy");
-						for (int i = 0; i < taxmap.size(); i++){
-							out.println("<p>" + taxmap.get(i) + "</p>");
-						}
+						out.println("<h1>" + request.getAttribute("taxonomy") + "</p>");
 					  } 
 					  if (request.getAttribute("taxonomy") == null){
 						out.println("<h1> TAXONOMY IS NULL </h1>");

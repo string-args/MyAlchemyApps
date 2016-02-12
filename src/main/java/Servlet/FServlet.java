@@ -75,18 +75,7 @@ public class FServlet extends HttpServlet {
 			//For taxonomy
 			JSONObject objtax = (JSONObject) parser.parse(taxonomy.toString());
 			JSONArray arrtax = (JSONArray) objtax.get("taxonomy");
-			ArrayList<String> taxmap = new ArrayList<>();
-			Iterator i = arrtax.iterator();
-			while (i.hasNext()){
-				JSONObject tax = (JSONObject) i.next();
-				String parseLabel = (String) tax.get("label");
-				taxmap.add("Label"); taxmap.add(parseLabel);
-				String parseScore = (String) tax.get("score");
-				taxmap.add("Score"); taxmap.add(parseScore);
-				String parseConfident = (String) tax.get("confident");
-			    taxmap.add("Confident"); taxmap.add(parseConfident);
-			}
-			request.setAttribute("taxonomy", taxmap);
+			request.setAttribute("taxonomy", arrtax);
 
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
