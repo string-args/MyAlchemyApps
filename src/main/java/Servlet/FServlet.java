@@ -10,6 +10,7 @@ import com.ibm.watson.developer_cloud.alchemy.v1.model.Taxonomies;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,18 +75,18 @@ public class FServlet extends HttpServlet {
 			//For taxonomy
 			JSONObject objtax = (JSONObject) parser.parse(taxonomy.toString());
 			JSONArray arrtax = (JSONArray) objtax.get("taxonomy");
-			Map<String,String> taxparams = new HashMap<String,String>();
+			ArrayList<String> taxmap = new ArrayList<>();
 			Iterator i = arrtax.iterator();
 			while (i.hasNext()){
 				JSONObject tax = (JSONObject) i.next();
 				String parseLabel = (String) tax.get("label");
-				taxparams.put("Label",parseLabel);
+				taxmap.add("Label"); taxmap.add(parseLabel);
 				String parseScore = (String) tax.get("score");
-				taxparams.put("Score",parseScore);
+				taxmap.add("Score"); taxmap.add(parseScore);
 				String parseConfident = (String) tax.get("confident");
-			    taxparams.put("Confident",parseConfident);
+			    taxmap.add("Confident"); taxmap.add(parseConfident);
 			}
-			request.setAttribute("taxonomy", taxparams);
+			request.setAttribute("taxonomy", taxmap);
 
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
