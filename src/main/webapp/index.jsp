@@ -40,10 +40,32 @@
 						out.println("<p>" + request.getAttribute("authors") + "</p>");
 					  }
 					  if (request.getAttribute("taxonomy") != null){
-						out.println("<h1>" + request.getAttribute("taxonomy") + "</p>");
+						out.println("<h1> Taxonomy </h1>");
+						out.println("<p>" + request.getAttribute("taxonomy") + "</p>");
 					  } 
-					  if (request.getAttribute("taxonomy") == null){
-						out.println("<h1> TAXONOMY IS NULL </h1>");
+					  if (request.getAttribute("concepts") != null){
+						out.println("<h1> Concepts: </h1>");
+						out.println("p>" + request.getAttribute("concepts") + "</p>");
+					  }
+					  if (request.getAttribute("keywords") != null){
+						out.println("<h1> Keywords: </h1>");
+						out.println("<p>" + request.getAttribute("keywords") + "</p>");
+					  }
+					  if (request.getAttribute("entities") != null){
+						out.println("<h1> Entities: </h1>");
+						out.println("<p>" + request.getAttribute("entities") + "</p>");
+					  }
+					  if (request.getAttribute("feeds") != null){
+						out.println("<h1> Feeds: </h1>");
+						out.println("<p>" + request.getAttribute("feeds") + "</p>");
+					  }
+					  if (request.getAttribute("sentiment") != null){
+						out.println("<h1> Sentiment: </h1>");
+						out.println("<p>" + request.getAttribute("sentiment") + "</p>");
+					  }
+					  if (request.getAttribute("relations") != null){
+						out.println("<h1> Relations: </h1>");
+						out.println("<p>" + request.getAttribute("relations") + "</p>");
 					  }
                     %>
                 </div>

@@ -2,11 +2,7 @@ package Servlet;
 
 import Bean.AlchemyConnector;
 import com.ibm.watson.developer_cloud.alchemy.v1.AlchemyLanguage;
-import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentText;
-import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentTitle;
-import com.ibm.watson.developer_cloud.alchemy.v1.model.Language;
-import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentAuthors;
-import com.ibm.watson.developer_cloud.alchemy.v1.model.Taxonomies;
+import com.ibm.watson.developer_cloud.alchemy.v1.model.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,6 +47,18 @@ public class FServlet extends HttpServlet {
 		DocumentAuthors authors = service.getAuthors(params);
 		//For taxonomy
 		Taxonomies taxonomy = service.getTaxonomy(params);
+		//For concepts
+		Concepts concepts = service.getConcepts(params);
+		//For keywords
+		Keywords keywords = service.getKeywords(params);
+		//For entities
+		Entities entities = service.getEntities(params);
+		//For feeds
+		Feeds feeds = service.getFeeds(params);
+		//For sentiment
+		DocumentSentiment sentiment = service.getSentiment(params);
+		//For relations
+		SAORelations relations = service.getRelations(params);
 		
 		try{
 			JSONParser parser = new JSONParser();
@@ -82,6 +90,29 @@ public class FServlet extends HttpServlet {
 				request.setAttribute("taxonomy", parseLabel);
 			}
 			
+			//For concepts
+			JSONObject objcon = (JSONObject) parser.parse(concepts.toString());
+			request.setAttribute("concepts",objcon);
+			
+			//For keywords
+			JSONObject objkey = (JSONObject) parser.parse(keywords.toString());
+			request.setAttribute("keywords",objkey);
+			
+			//For entities
+			JSONObject objent = (JSONObject) parser.parse(entities.toString());
+			request.setAttribute("entities",objent);
+			
+			//For feeds
+			JSONObject objfeeds = (JSONObject) parser.parse(feeds.toString());
+			request.setAttribute("feeds",objfeeds);
+			
+			//For sentiment
+			JSONObject objsent = (JSONObject) parser.parse(sentiment.toString());
+			request.setAttribute("sentiment",objsent);
+			
+			//For relations
+			JSONObject objrel = (JSONObject) parser.parse(relations.toString());
+			request.setAttribute("relations",objrel);
 
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
