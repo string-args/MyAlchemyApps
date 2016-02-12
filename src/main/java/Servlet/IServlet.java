@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.net.URL;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,9 +36,20 @@ public class IServlet extends HttpServlet {
 		//get url inputted by user
 		String gurl = request.getParameter("gurl");
 		
-		ImageLink ilink = service.getImageLink(gurl);
+		URL image = new URL(gurl);
+		
+		//For imagelink
+		ImageLink ilink = service.getImageLink(image);
+		
+		//For imagefaces
+		ImageFaces faces = service.recognizeFaces(image,true);
 		
 		request.setAttribute("imagelink",ilink);
+		request.setAttribute("imagefaces",faces);
+		response.setContentType("text/html");
+        response.setStatus(200);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
 	}
 
 }

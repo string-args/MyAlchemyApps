@@ -78,6 +78,10 @@
 					if (request.getAttribute("imagelink") != null){
 						out.println("<h1>" + request.getAttribute("imagelink") + "</h1>");
 					}
+					if (request.getAttribute("imagefaces") != null){
+						out.println("<h1>" + request.getAttribute("imagefaces") + "</h1>");
+					}
+					
 					%>
                 </div>
             </div>
