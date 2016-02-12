@@ -6,6 +6,7 @@ import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentText;
 import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentTitle;
 import com.ibm.watson.developer_cloud.alchemy.v1.model.Language;
 import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentAuthors;
+import com.ibm.watson.developer_cloud.alchemy.v1.model.Taxonomy;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +47,8 @@ public class FServlet extends HttpServlet {
         DocumentText text = service.getText(params);
 		//For authors
 		DocumentAuthors authors = service.getAuthors(params);
+		//For taxonomy
+		Taxonomy taxonomy = service.getTaxonomy(params);
 		
 		try{
 			JSONParser parser = new JSONParser();
@@ -66,6 +69,9 @@ public class FServlet extends HttpServlet {
 			
 			//For authors
 			request.setAttribute("authors",authors);
+			
+			//For taxonomy
+			request.setAttribute("taxonomy",taxonomy);
 
 		} catch (Exception e) {
 			e.printStackTrace(System.err);

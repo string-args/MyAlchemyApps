@@ -43,6 +43,10 @@
 						out.println("<h1> Authors: </h1>");
 						out.println("<p>" + request.getAttribute("authors") + "</p>");
 					  }
+					  if (request.getAttribute("taxonomy") != null){
+						out.println("<h1> Taxonomy: </h1>");
+						out.println("<p>" + request.getAttribute("taxonomy") + "</p>");
+					  }
                 %>
         </div>
     </body>
