@@ -41,18 +41,12 @@ public class IServlet extends HttpServlet {
 		//For imagefaces
 		ImageFaces faces = service.recognizeFaces(image,true);
 		
-		//For imagekeywords
-		ImageKeywords keywords = service.getImageKeywords(image, false, false);
-		
 		try{
 			JSONParser parser = new JSONParser();
 			//for title
 			JSONObject objfaces = (JSONObject) parser.parse(faces.toString());
 			request.setAttribute("imagefaces",objfaces);
-			
-			//for keywords
-			JSONObject objkey = (JSONObject) parser.parse(keywords.toString());
-			request.setAttribute("imagekeywords",objkey);
+
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
 		}
