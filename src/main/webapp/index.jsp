@@ -75,7 +75,7 @@
                         <input type="submit" value="Extract">
                     </form> <br/>
 					<%
-					if (request.getAttribute("imagelink") != null){
+					if (request.getAttribute("imagekey") != null){
 						out.println("<h1>" + request.getAttribute("imagelink") + "</h1>");
 					}
 					if (request.getAttribute("imagefaces") != null){

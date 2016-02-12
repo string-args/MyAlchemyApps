@@ -41,17 +41,24 @@ public class IServlet extends HttpServlet {
 		//For imagefaces
 		ImageFaces faces = service.recognizeFaces(image,true);
 		
+		//For imagekeywords
+		ImageKeywords keywords = service.getKeywords(image, false, true);
+		
 		try{
 			JSONParser parser = new JSONParser();
 			//for title
 			JSONObject objfaces = (JSONObject) parser.parse(faces.toString());
 			request.setAttribute("imagefaces",objfaces);
+			
+			//for keywords
+			JSONObject objkey = (JSONObject) parser.parse(keywords.toString());
+			request.setAttribute("imagkeywords",objkey);
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
 		}
 		response.setContentType("text/html");
         response.setStatus(200);
-        response.sendRedirect("index.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
 
 	}
 
