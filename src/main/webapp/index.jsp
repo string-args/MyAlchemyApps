@@ -50,8 +50,9 @@
 					  if (request.getAttribute("taxonomy") != null){
 						Map<String,String> taxmap = new HashMap<String,String>();
 						List<String> keys = new ArrayList<String>(taxmap.keySet());
+						out.println("<h1> Taxonomies </h1>");
 						for(String key: keys){
-							out.println(key + " " + keys);
+							out.println("<p>" + key + "-" + keys + "</p>");
 						}
 					  }
                 %>
