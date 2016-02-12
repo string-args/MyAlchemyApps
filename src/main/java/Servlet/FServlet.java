@@ -10,6 +10,7 @@ import com.ibm.watson.developer_cloud.alchemy.v1.model.Taxonomies;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -72,16 +73,19 @@ public class FServlet extends HttpServlet {
 			
 			//For taxonomy
 			JSONObject objtax = (JSONObject) parser.parse(taxonomy.toString());
-			JSONArray arrtax = objtax.getJSONArray("taxonomy");
+			JSONArray arrtax = (JSONArray) objtax.get("taxonomy");
 			Map<String,String> taxparams = new HashMap<String,String>();
-			for (int i = 0; i < arrtax.length(); i++){
-				String parseLabel = arrtax.getJSONObject(i).getString("label");
+			Iterator i = arrtax.iterator();
+			while (i.hasNext()){
+				JSONObject tax = (JSONObject) i.next();
+				String parseLabel = (String) tax.get("label");
 				taxparams.put("Label",parseLabel);
-				String parseScore = arrtax.getJSONObject(i).getString("score");
+				String parseScore = (String) tax.get("score");
 				taxparams.put("Score",parseScore);
-				String parseConfident = arrtax.getJSONObject(i).getString("confident");
-				taxparams.put("Confident",parseConfident);
+				String parseConfident = (String) tax.get("confident");
+			    taxparams.put("Confident",parseConfident);
 			}
+
 			request.setAttribute("taxonomy", taxparams);
 
 		} catch (Exception e) {
