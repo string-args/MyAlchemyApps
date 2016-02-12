@@ -22,15 +22,7 @@
                         <input type="text" name="furl" value="https://en.wikipedia.org/wiki/IBM" size="80">
                         <input type="submit" value="Extract">
                     </form> <br/>
-                </div>
-                <div id="content2">
-                    <form action="/IServet" method="POST">
-                        <input type="text" name="gurl" value="http://aib.edu.au/blog/wp-content/uploads/2015/08/bill-gates-jpg.jpg" size="80">
-                        <input type="submit" value="Extract">
-                    </form> <br/>
-                </div>
-            </div>
-			 <%
+					<%
                       if (request.getAttribute("title") != null){
 						out.println("<h1> Title: </h1>");
 						out.println("<p>" + request.getAttribute("title") + "</p>");
@@ -55,7 +47,16 @@
 							out.println("<p>" + key + "-" + keys + "</p>");
 						}
 					  }
-                %>
+                    %>
+                </div>
+                <div id="content2">
+                    <form action="/IServet" method="POST">
+                        <input type="text" name="gurl" value="http://aib.edu.au/blog/wp-content/uploads/2015/08/bill-gates-jpg.jpg" size="80">
+                        <input type="submit" value="Extract">
+                    </form> <br/>
+                </div>
+            </div>
+			 
         </div>
     </body>
 </html>
