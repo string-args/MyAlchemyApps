@@ -42,7 +42,7 @@ public class FServlet extends HttpServlet {
 		//For language
 		Language language = service.getLanguage(params);
 		//For text
-        DocumentText text = service.getText(params);
+        //DocumentText text = service.getText(params);
 		//For authors
 		DocumentAuthors authors = service.getAuthors(params);
 		//For taxonomy
