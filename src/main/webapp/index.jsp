@@ -1,5 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -44,8 +48,11 @@
 						out.println("<p>" + request.getAttribute("authors") + "</p>");
 					  }
 					  if (request.getAttribute("taxonomy") != null){
-						out.println("<h1> Taxonomy: </h1>");
-						out.println("<p>" + request.getAttribute("taxonomy") + "</p>");
+						Map<String,String> taxmap = new HashMap<String,String>();
+						List<String> keys = new ArrayList<String>(taxmap.keySet());
+						for(String key: keys){
+							out.println(key + " " + keys);
+						}
 					  }
                 %>
         </div>

@@ -71,7 +71,18 @@ public class FServlet extends HttpServlet {
 			request.setAttribute("authors",authors);
 			
 			//For taxonomy
-			request.setAttribute("taxonomy",taxonomy);
+			JSONObject objtax = (JSONObject) parser.parse(taxonomy.toString());
+			JSONArray arrtax = objtax.getJSONArray("taxonomy");
+			Map<String,String> taxparams = new HashMap<String,String>();
+			for (int i = 0; i < arrtax.length(); i++){
+				String parseLabel = arrtax.getJSONObject(i).getString("label");
+				taxparams.put("Label",parseLabel);
+				String parseScore = arrtax.getJSONObject(i).getString("score");
+				taxparams.put("Score",parseScore);
+				String parseConfident = arrtax.getJSONObject(i).getString("confident");
+				taxparams.put("Confident",parseConfident);
+			}
+			request.setAttribute("taxonomy", taxparams);
 
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
