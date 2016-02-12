@@ -51,7 +51,7 @@ public class IServlet extends HttpServlet {
 		}
 		response.setContentType("text/html");
         response.setStatus(200);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        response.sendRedirect("index.jsp");
 
 	}
 
