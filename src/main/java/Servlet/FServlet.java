@@ -74,9 +74,9 @@ public class FServlet extends HttpServlet {
 			request.setAttribute("language", parseLang);
 			
 			//For text
-			JSONObject objtext = (JSONObject) parser.parse(text.toString());
-			String parseText = (String) objtext.get("text");
-			request.setAttribute("text", parseText);
+			//JSONObject objtext = (JSONObject) parser.parse(text.toString());
+			//String parseText = (String) objtext.get("text");
+			//request.setAttribute("text", parseText);
 			
 			//For authors
 			request.setAttribute("authors",authors);
