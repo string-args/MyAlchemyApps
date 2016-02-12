@@ -93,8 +93,27 @@ public class FServlet extends HttpServlet {
 			//For concepts
 			JSONObject objcon = (JSONObject) parser.parse(concepts.toString());
 			request.setAttribute("concepts",objcon);
+		/*	
+			//For keywords
+			JSONObject objkey = (JSONObject) parser.parse(keywords.toString());
+			request.setAttribute("keywords",objkey);
 			
-
+			//For entities
+			JSONObject objent = (JSONObject) parser.parse(entities.toString());
+			request.setAttribute("entities",objent);
+			
+			//For feeds
+			JSONObject objfeeds = (JSONObject) parser.parse(feeds.toString());
+			request.setAttribute("feeds",objfeeds);
+			
+			//For sentiment
+			JSONObject objsent = (JSONObject) parser.parse(sentiment.toString());
+			request.setAttribute("sentiment",objsent);
+			
+			//For relations
+			JSONObject objrel = (JSONObject) parser.parse(relations.toString());
+			request.setAttribute("relations",objrel);
+*/
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
 		}
