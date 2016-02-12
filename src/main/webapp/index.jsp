@@ -40,7 +40,7 @@
 						out.println("<p>" + request.getAttribute("authors") + "</p>");
 					  }
 					  if (request.getAttribute("taxonomy") != null){
-						Map<String,String> taxmap = new HashMap<String,String>();
+						Map<String,String> taxmap = (HashMap) request.getAttribute("taxonomy");
 						List<String> keys = new ArrayList<String>(taxmap.keySet());
 						out.println("<h1> Taxonomies </h1>");
 						for(String key: keys){
