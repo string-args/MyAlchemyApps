@@ -78,7 +78,7 @@ public class FServlet extends HttpServlet {
 			Iterator i = arrtax.iterator();
 			while (i.hasNext()){
 				JSONObject obj = (JSONObject) i.next();
-				String parseLabel = (String) obj.get("score");
+				String parseLabel = (String) obj.get("label");
 				request.setAttribute("taxonomy", parseLabel);
 			}
 			
