@@ -49,6 +49,7 @@ public class FServlet extends HttpServlet {
 		Taxonomies taxonomy = service.getTaxonomy(params);
 		//For concepts
 		Concepts concepts = service.getConcepts(params);
+		/*
 		//For keywords
 		Keywords keywords = service.getKeywords(params);
 		//For entities
@@ -59,7 +60,7 @@ public class FServlet extends HttpServlet {
 		DocumentSentiment sentiment = service.getSentiment(params);
 		//For relations
 		SAORelations relations = service.getRelations(params);
-		
+		*/
 		try{
 			JSONParser parser = new JSONParser();
 			//for title
@@ -83,12 +84,7 @@ public class FServlet extends HttpServlet {
 			//For taxonomy
 			JSONObject objtax = (JSONObject) parser.parse(taxonomy.toString());
 			JSONArray arrtax = (JSONArray) objtax.get("taxonomy");
-			Iterator i = arrtax.iterator();
-			while (i.hasNext()){
-				JSONObject obj = (JSONObject) i.next();
-				String parseLabel = (String) obj.get("label");
-				request.setAttribute("taxonomy", arrtax);
-			}
+			request.setAttribute("taxonomy", arrtax);
 			
 			//For concepts
 			JSONObject objcon = (JSONObject) parser.parse(concepts.toString());
