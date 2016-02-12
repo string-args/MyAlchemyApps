@@ -42,7 +42,7 @@ public class IServlet extends HttpServlet {
 		ImageFaces faces = service.recognizeFaces(image,true);
 		
 		//For imagekeywords
-		ImageKeywords keywords = service.getKeywords(image, false, true);
+		ImageKeywords keywords = service.getImageKeywords(image, false, true);
 		
 		try{
 			JSONParser parser = new JSONParser();
