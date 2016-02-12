@@ -31,7 +31,7 @@
 						out.println("<h4> Language: </h4>"+ request.getAttribute("language"));
 					  }
 					  if (request.getAttribute("authors") != null){
-						out.println("<h4 Authors: </h4>" + request.getAttribute("authors"));
+						out.println("<h4> Authors: </h4>" + request.getAttribute("authors"));
 					  }
 					  if (request.getAttribute("text") != null){
                         out.println("<h4>Text:</h4>");
