@@ -75,6 +75,11 @@ public class FServlet extends HttpServlet {
 			//For taxonomy
 			JSONObject objtax = (JSONObject) parser.parse(taxonomy.toString());
 			JSONArray arrtax = (JSONArray) objtax.get("taxonomy");
+			Iterator i = arrtax.iterator();
+			while (i.hasNext()){
+				JSONObject obj = (JSONObject) i.next();
+				String parseLabel = (String) obj.get("label");
+			}
 			request.setAttribute("taxonomy", arrtax);
 
 		} catch (Exception e) {
