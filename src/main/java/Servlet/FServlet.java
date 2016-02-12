@@ -79,7 +79,7 @@ public class FServlet extends HttpServlet {
 			while (i.hasNext()){
 				JSONObject obj = (JSONObject) i.next();
 				float parseLabel = (float) obj.get("score");
-				request.setAttribute("taxonomy", parseLabel);
+				request.setAttribute("taxonomy", Float.toString(parseLabel));
 			}
 			
 
