@@ -38,14 +38,17 @@ public class IServlet extends HttpServlet {
 		
 		URL image = new URL(gurl);
 		
-		//For imagelink
-		ImageLink ilink = service.getImageLink(image);
-		
 		//For imagefaces
 		ImageFaces faces = service.recognizeFaces(image,true);
 		
-		request.setAttribute("imagelink",ilink.toString());
-		request.setAttribute("imagefaces",faces.toString());
+		try{
+			JSONParser parser = new JSONParser();
+			//for title
+			JSONObject objfaces = (JSONObject) parser.parse(faces.toString());
+			request.setAttribute("imagefaces",objfaces);
+		} catch (Exception e) {
+			e.printStackTrace(System.err);
+		}
 		response.setContentType("text/html");
         response.setStatus(200);
         request.getRequestDispatcher("index.jsp").forward(request, response);
