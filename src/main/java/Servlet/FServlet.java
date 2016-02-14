@@ -55,8 +55,7 @@ public class FServlet extends HttpServlet {
             throws ServletException, IOException {
 		try{
 			processRequest(request, response);
-		} catch (Exception ex){}
-			
+		} catch (Exception ex){}			
     }
 	
 	@Override
