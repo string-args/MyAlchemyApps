@@ -39,7 +39,7 @@ public class FServlet extends HttpServlet {
 		
 		DocumentSentiment sentiment = al_service.getSentiment(params);
 		request.setAttribute("sentiment",sentiment);
-		response.sendRedirect("index.jsp");
+		request.getRequestDispatcher("index.jsp").forward(request,response);
 	}
 
 	@Override
