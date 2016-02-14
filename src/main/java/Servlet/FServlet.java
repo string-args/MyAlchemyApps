@@ -23,10 +23,10 @@ import org.json.simple.parser.JSONParser;
 @WebServlet(name = "FServlet", urlPatterns = {"/FServlet"})
 public class FServlet extends HttpServlet {
 
-
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-		throws ServletException, IOException, Exception{
-		response.setContentType("text/html;charset=UTF-8");
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+				response.setContentType("text/html;charset=UTF-8");
 		
 		AlchemyConnector connector = new AlchemyConnector();
 		AlchemyLanguage al_service = new AlchemyLanguage();
@@ -39,28 +39,8 @@ public class FServlet extends HttpServlet {
 		
 		DocumentSentiment sentiment = al_service.getSentiment(params);
 		request.setAttribute("sentiment",sentiment);
-		request.getRequestDispatcher("index.jsp").forward(request,response);
-	}
-
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-		throws ServletException, IOException{
-		try{
-			processRequest(request, response);
-		} catch (Exception ex){}
-	}
-	
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-		try{
-			processRequest(request, response);
-		} catch (Exception ex){}			
+		request.getRequestDispatcher("index.jsp").forward(request,response);		
     }
 	
-	@Override
-	public String getServletInfo(){
-		return "Short Description";
-	}
 
 }
