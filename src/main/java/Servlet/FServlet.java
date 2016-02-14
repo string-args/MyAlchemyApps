@@ -37,8 +37,8 @@ public class FServlet extends HttpServlet {
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put(AlchemyLanguage.URL,url);
 		
-		DocumentSentiment sentiment = al_service.getSentiment(params);
-		request.setAttribute("sentiment",sentiment);
+		DocumentTitle title = al_service.getTitle(params);
+		request.setAttribute("sentiment",title);
 		request.getRequestDispatcher("index.jsp").forward(request,response);		
     }
 	
