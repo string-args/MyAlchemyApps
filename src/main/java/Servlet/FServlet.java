@@ -6,6 +6,8 @@ import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentSentiment;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.*;
+import java.net.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,9 +27,10 @@ public class FServlet extends HttpServlet {
 		al_service.setApiKey(connector.getAPIKey());
 		
 		String input = (String) request.getAttribute("furl");
+		URL url = new URL(input);
 		
 		Map<String,Object> params = new HashMap<String,Object>();
-		params.put(AlchemyLanguage.URL,input);
+		params.put(AlchemyLanguage.URL,url);
 		
 		DocumentSentiment sentiment = al_service.getSentiment(params);
 		request.setAttribute("sentiment",sentiment);
