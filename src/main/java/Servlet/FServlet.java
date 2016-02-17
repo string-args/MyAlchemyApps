@@ -39,6 +39,7 @@ public class FServlet extends HttpServlet {
 		
 		DocumentTitle title = al_service.getTitle(params);
 		request.setAttribute("sentiment",title);
+		response.setStatus(200);
 		request.getRequestDispatcher("index.jsp").forward(request,response);		
     }
 	
