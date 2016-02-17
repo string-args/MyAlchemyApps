@@ -35,7 +35,7 @@ public class FServlet extends HttpServlet {
 		String input = (String) request.getAttribute("furl");
 		
 		Map<String,Object> params = new HashMap<String,Object>();
-		params.put(AlchemyLanguage.URL,input);
+		params.put(AlchemyLanguage.TEXT,input);
 		
 		DocumentSentiment sentiment = al_service.getSentiment(params);
 		request.setAttribute("sentiment",sentiment);
