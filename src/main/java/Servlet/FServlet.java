@@ -26,13 +26,13 @@ public class FServlet extends HttpServlet {
 		AlchemyLanguage al_service = new AlchemyLanguage();
 		al_service.setApiKey(connector.getAPIKey());
 		
-		String input = (String) request.getAttribute("furl");
+		String furl = (String) request.getAttribute("furl");
 		
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put(AlchemyLanguage.URL,furl);
 		
 		DocumentSentiment sentiment = al_service.getSentiment(params);
-		request.setAttribute("sentiment",sentiment.toString());
+		request.setAttribute("sentiment",sentiment);
 		
 		response.setContentType("text/html;charset=UTF-8");
 		response.setStatus(200);
