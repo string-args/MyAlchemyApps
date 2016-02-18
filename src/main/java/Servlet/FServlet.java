@@ -15,6 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 
 @WebServlet(name = "FServlet", urlPatterns = {"/FServlet"})
 public class FServlet extends HttpServlet {
@@ -32,7 +36,15 @@ public class FServlet extends HttpServlet {
 		params.put(AlchemyLanguage.URL,furl);
 		
 		DocumentSentiment sentiment = al_service.getSentiment(params);
-		request.setAttribute("sentiment",sentiment);
+		
+		try{
+			JSONParser parser = new JSONParser();
+			JSONObject parse_sentiment = (JSONObject) parser.parse(sentiment.toString());
+			request.setAttribute("sentiment",parse_sentiment);
+			
+			
+		}catch(Exception ex){}
+		
 		
 		response.setContentType("text/html;charset=UTF-8");
 		response.setStatus(200);
