@@ -31,27 +31,25 @@ public class FServlet extends HttpServlet {
             throws ServletException, IOException {
 		AlchemyConnector connector = new AlchemyConnector();
 		AlchemyLanguage service = new AlchemyLanguage();
+		service.setApiKey(connector.getAPIKey());
 		
 		String input_url = (String) request.getParameter("furl");
 
-		//Map<String,Object> params = new HashMap<String,Object>();
-		//params.put(AlchemyLanguage.URL, input_url);
+		Map<String,Object> params = new HashMap<String,Object>();
+		params.put(AlchemyLanguage.URL, input_url);
 
-		//URL url = new URL("http://gateway-a.watsonplatform.net/calls/url/URLGetRankedTaxonomy?url=http://thelasallian.com/2016/02/19/from-manila-to-thessaloniki-the-making-of-world-debate-champions/&apikey=c0659d73365193a78936037a46b1a27c6863a893&outputMode=json");
-				
-		//StringBuilder sb = new StringBuilder();
-		//try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
-		//for (String line; (line = reader.readLine()) != null;) {
-		//	sb.append(line);
-		//}
-		//}
+		DocumentTitle title = service.getTitle(params);
+		DocumentAuthors authors = service.getAuthors(params);
+		Language language = service.getLanguage(params);
+		//Taxonomies taxonomy = service.getTaxonomy(params);
+		DocumentSentiment sentiment = service.getSentiment(params);
 		
-		//try{
-		//	JSONParser parser = new JSONParser();
-		//  JSONObject 
-		//}catch (Exception e){}
-
-		request.setAttribute("url",input_url);	
+		request.setAttribute("title",title);
+		request.setAttribute("authors",authors);
+		request.setAttribute("language",language);
+		//request.setAttribute("taxonomy",taxonomy);
+		request.setAttribute("sentiment",sentiment);
+		
 		response.setContentType("text/html;charset=UTF-8");
 		response.setStatus(200);
 		request.getRequestDispatcher("index.jsp").forward(request,response);		
