@@ -28,20 +28,29 @@ public class FServlet extends HttpServlet {
             throws ServletException, IOException {
 		AlchemyConnector connector = new AlchemyConnector();
 		AlchemyLanguage service = new AlchemyLanguage();
-		service.setApiKey(connector.getAPIKey());
 		
 		String input_url = (String) request.getAttribute("furl");
 
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put(AlchemyLanguage.URL, input_url);
+		//Map<String,Object> params = new HashMap<String,Object>();
+		//params.put(AlchemyLanguage.URL, input_url);
 
-		DocumentTitle title = service.getTitle(params);		
-		DocumentAuthors authors = service.getAuthors(params);
-		Language language = service.getLanguage(params);	
+		URL url = new URL("http://gateway-a.watsonplatform.net/calls/url/URLGetRankedTaxonomy?url="+input_url+"&apikey="+connector.getAPIKey()+"&outputMode=json");
+		URLConnection yc = url.openConnection();
+		BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+		
+		String outputLine;
+		String json_output = "";
+		while ((outputLine = in.readLine()) != null)
+			json_output.concat(outputLine);
+		in.close();
+		
+		//DocumentTitle title = service.getTitle(params);		
+		//DocumentAuthors authors = service.getAuthors(params);
+		//Language language = service.getLanguage(params);	
 		//Taxonomies taxonomy = service.getTaxonomy(params);	
-		DocumentSentiment sentiment = service.getSentiment(params);
+		//DocumentSentiment sentiment = service.getSentiment(params);
 			
-		request.setAttribute("title",title);	
+		request.setAttribute("title",json_output);	
 		response.setContentType("text/html;charset=UTF-8");
 		response.setStatus(200);
 		request.getRequestDispatcher("index.jsp").forward(request,response);		
