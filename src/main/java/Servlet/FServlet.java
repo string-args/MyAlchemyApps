@@ -37,7 +37,6 @@ public class FServlet extends HttpServlet {
 
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put(AlchemyLanguage.URL, input_url);
-
 		DocumentTitle title = service.getTitle(params);
 		DocumentAuthors authors = service.getAuthors(params);
 		Language language = service.getLanguage(params);
@@ -49,7 +48,7 @@ public class FServlet extends HttpServlet {
 		request.setAttribute("language",language);
 		//request.setAttribute("taxonomy",taxonomy);
 		request.setAttribute("sentiment",sentiment);
-		
+
 		response.setContentType("text/html;charset=UTF-8");
 		response.setStatus(200);
 		request.getRequestDispatcher("index.jsp").forward(request,response);		
