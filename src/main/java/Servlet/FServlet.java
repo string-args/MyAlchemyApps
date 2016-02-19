@@ -29,7 +29,7 @@ public class FServlet extends HttpServlet {
 		String input_url = (String) request.getAttribute("furl");
 
 		Map<String,Object> params = new HashMap<String,Object>();
-		params.put(AlchemyLanguage.BASE_URL, input_url);
+		params.put(AlchemyLanguage.URL, input_url);
 
 		DocumentTitle title = service.getTitle(params);
 		request.setAttribute("title", title);
