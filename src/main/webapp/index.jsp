@@ -46,7 +46,11 @@
                         <input type="text" name="gurl" value="http://aib.edu.au/blog/wp-content/uploads/2015/08/bill-gates-jpg.jpg" size="80">
                         <input type="submit" value="Extract">
                     </form> <br/>
-
+					<%
+						if (request.getAttribute("face") != null){
+							out.println("<h3>" + request.getAttribute("face") + "</h3>");
+						}
+					%>
                 </div>
             </div>
 			 
