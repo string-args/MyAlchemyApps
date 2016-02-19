@@ -29,7 +29,7 @@
 						}
 						if (request.getAttribute("authors") != null){
 							out.println("<h2>Authors</h2>"); 
-							out.println("<h3>" + request.getAttribute("author") + "</h3>");
+							out.println("<h3>" + request.getAttribute("authors") + "</h3>");
 						}
 						if (request.getAttribute("language") != null){
 							out.println("<h2>Language</h2>"); 
