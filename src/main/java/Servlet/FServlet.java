@@ -35,8 +35,18 @@ public class FServlet extends HttpServlet {
 		//params.put(AlchemyLanguage.URL, input_url);
 
 		URL url = new URL("http://gateway-a.watsonplatform.net/calls/url/URLGetRankedTaxonomy?url="+input_url+"&apikey="+connector.getAPIKey()+"&outputMode=json");
-		URLConnection yc = url.openConnection();
-		InputStream in = yc.getInputStream();
+		HttpURLConnection yc = (HttpURLConnection) url.openConnection();
+		BufferedReader rd = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+		StringBuilder sb = new StringBuilder();
+		String line;
+		
+		while ((line = rd.readLine()) != null){
+			sb.append(line);
+		}
+		rd.close();
+		yc.disconnect();
+		
+		//InputStream in = yc.getInputStream();
 		
 		
 		
@@ -47,7 +57,7 @@ public class FServlet extends HttpServlet {
 		//Taxonomies taxonomy = service.getTaxonomy(params);	
 		//DocumentSentiment sentiment = service.getSentiment(params);
 			
-		request.setAttribute("title",in.toString());	
+		request.setAttribute("title",sb.toString());	
 		response.setContentType("text/html;charset=UTF-8");
 		response.setStatus(200);
 		request.getRequestDispatcher("index.jsp").forward(request,response);		
