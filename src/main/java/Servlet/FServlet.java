@@ -29,7 +29,7 @@ public class FServlet extends HttpServlet {
 	private String TAXONOMY_ENDPOINT_URL = "http://gateway-a.watsonplatform.net/calls/url/URLGetRankedTaxonomy";
 	private String LANGUAGE_ENDPOINT_URL = "http://access.alchemyapi.com/calls/url/URLGetLanguage";
 	private String AUTHOR_ENDPOINT_URL = "http://gateway-a.watsonplatform.net/calls/url/URLGetAuthors";
-	private String SENTIMENT_ENDPOINT_URL = "Endpoint: http://gateway-a.watsonplatform.net/calls/url/URLGetTextSentiment";
+	private String SENTIMENT_ENDPOINT_URL = "http://gateway-a.watsonplatform.net/calls/url/URLGetTextSentiment";
 	
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -48,7 +48,7 @@ public class FServlet extends HttpServlet {
 			sb.append(line);
 		}
 		request.setAttribute("taxonomy",sb.toString());
-		
+		/*
 		sb = new StringBuilder();
 		
 		URL language_url = new URL(LANGUAGE_ENDPOINT_URL+"?url="+input_url+"&apikey="+connector.getAPIKey()+"&outputMode=json");
@@ -83,7 +83,7 @@ public class FServlet extends HttpServlet {
 		
 		
 		//request.setAttribute("title",title);
-		
+		*/
 
 
 		response.setContentType("text/html;charset=UTF-8");
