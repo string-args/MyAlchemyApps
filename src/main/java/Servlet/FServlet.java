@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 
 @WebServlet(name = "FServlet", urlPatterns = {"/FServlet"})
@@ -29,7 +32,7 @@ public class FServlet extends HttpServlet {
 		AlchemyConnector connector = new AlchemyConnector();
 		AlchemyLanguage service = new AlchemyLanguage();
 		
-		String input_url = (String) request.getAttribute("furl");
+		String input_url = (String) request.getParameter("furl");
 
 		//Map<String,Object> params = new HashMap<String,Object>();
 		//params.put(AlchemyLanguage.URL, input_url);
@@ -42,6 +45,11 @@ public class FServlet extends HttpServlet {
 		//	sb.append(line);
 		//}
 		//}
+		
+		//try{
+		//	JSONParser parser = new JSONParser();
+		//  JSONObject 
+		//}catch (Exception e){}
 
 		request.setAttribute("url",input_url);	
 		response.setContentType("text/html;charset=UTF-8");
