@@ -22,6 +22,9 @@
                     </form> <br/>
 					
 					<%
+						if (request.getAttribute("url") != null){
+							out.println("<h3>" + request.getAttribute("url") + "</h3>");
+						}
 						if (request.getAttribute("title") != null){
 							out.println("<h3>" + request.getAttribute("title") + "</h3>");
 						}
