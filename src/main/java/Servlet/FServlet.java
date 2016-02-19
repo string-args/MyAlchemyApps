@@ -21,39 +21,26 @@ public class FServlet extends HttpServlet {
 	private String TAXONOMY_ENDPOINT_URL = "http://gateway-a.watsonplatform.net/calls/url/URLGetRankedTaxonomy";
 	private String LANGUAGE_ENDPOINT_URL = "http://access.alchemyapi.com/calls/url/URLGetLanguage";
 	private String AUTHOR_ENDPOINT_URL = "http://gateway-a.watsonplatform.net/calls/url/URLGetAuthor";
-	private String SENTIMENT_ENDPOINT_URL = "http://gateway-a.watsonplatform.net/calls/url/URLGetTextSentiment";
+	private String SENTIMENT_ENDPOINT_URL = "http://gateway-a.watsonplatform.net/calls/url/URLGetRankedKeywords";
 	private String TITLE_ENDPOINT_URL = "http://gateway-a.watsonplatform.net/calls/url/URLGetTitle";
 	
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
 		AlchemyConnector connector = new AlchemyConnector();
-		//AlchemyLanguage service = new AlchemyLanguage();
-		//service.setApiKey(connector.getAPIKey());
-		
+
 		String input_url = (String) request.getParameter("furl");
 		StringBuilder sb = new StringBuilder();
 		String line;
-		
-		JSONParser parser = new JSONParser();
-		
+
 		URL taxonomy_url = new URL(TAXONOMY_ENDPOINT_URL+"?url="+input_url+"&apikey="+connector.getAPIKey()+"&outputMode=json");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(taxonomy_url.openStream()));
 		while ((line = reader.readLine()) != null){
 			sb.append(line);
 		}
 		
-		//try{
-		//	JSONObject taxObj = (JSONObject) parser.parse(sb.toString());
-		//	JSONArray taxarr = (JSONArray) taxObj.get("taxonomy");
-		//	String tax_list = "";
-		//	for (int i = 0; i < taxarr.size(); i++){
-		//			JSONObject arrint = (JSONObject) taxarr.get(i);
-		//			tax_list.concat(arrint.get("label") + " " + arrint.get("score") + " " + arrint.get("confident") + "\n");
-		//	}
-			request.setAttribute("taxonomy",sb.toString());
-		//}catch(Exception ex){}
-		
+		request.setAttribute("taxonomy",sb.toString());
+
 		sb = new StringBuilder();
 		
 		URL language_url = new URL(LANGUAGE_ENDPOINT_URL+"?url="+input_url+"&apikey="+connector.getAPIKey()+"&outputMode=json");
@@ -62,11 +49,7 @@ public class FServlet extends HttpServlet {
 			sb.append(line);
 		}
 		
-		//try{
-		//	JSONObject langObj = (JSONObject) parser.parse(sb.toString());
-		//	String lang = (String) langObj.get("language");
-			request.setAttribute("language",sb.toString());
-		//}catch(Exception ex){}
+		request.setAttribute("language",sb.toString());
 		
 		sb = new StringBuilder();
 		
@@ -84,6 +67,7 @@ public class FServlet extends HttpServlet {
 		while ((line = reader.readLine()) != null){
 			sb.append(line);
 		}
+		
 		request.setAttribute("authors",sb.toString());
 		
 		sb = new StringBuilder();
@@ -93,12 +77,8 @@ public class FServlet extends HttpServlet {
 		while ((line = reader.readLine()) != null){
 			sb.append(line);
 		}
-		//try{
-		//	JSONObject titleObj = (JSONObject) parser.parse(sb.toString());
-		//	String title = (String) titleObj.get("title");
-			request.setAttribute("title",sb.toString());
-		//}catch(Exception ex){}
-	
+
+		request.setAttribute("title",sb.toString());
 
 		response.setContentType("text/html;charset=UTF-8");
 		response.setStatus(500);
