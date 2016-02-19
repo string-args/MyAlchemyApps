@@ -25,7 +25,7 @@ public class FServlet extends HttpServlet {
 	private String TITLE_ENDPOINT_URL = "http://gateway-a.watsonplatform.net/calls/url/URLGetTitle";
 	
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
 		AlchemyConnector connector = new AlchemyConnector();
 		//AlchemyLanguage service = new AlchemyLanguage();
@@ -43,16 +43,16 @@ public class FServlet extends HttpServlet {
 			sb.append(line);
 		}
 		
-		try{
-			JSONObject taxObj = (JSONObject) parser.parse(sb.toString());
-			JSONArray taxarr = (JSONArray) taxObj.get("taxonomy");
-			String tax_list = "";
-			for (int i = 0; i < taxarr.size(); i++){
-					JSONObject arrint = (JSONObject) taxarr.get(i);
-					tax_list.concat(arrint.get("label") + " " + arrint.get("score") + " " + arrint.get("confident") + "\n");
-			}
-			request.setAttribute("taxonomy",tax_list);
-		}catch(Exception ex){}
+		//try{
+		//	JSONObject taxObj = (JSONObject) parser.parse(sb.toString());
+		//	JSONArray taxarr = (JSONArray) taxObj.get("taxonomy");
+		//	String tax_list = "";
+		//	for (int i = 0; i < taxarr.size(); i++){
+		//			JSONObject arrint = (JSONObject) taxarr.get(i);
+		//			tax_list.concat(arrint.get("label") + " " + arrint.get("score") + " " + arrint.get("confident") + "\n");
+		//	}
+			request.setAttribute("taxonomy",sb.toString());
+		//}catch(Exception ex){}
 		
 		sb = new StringBuilder();
 		
@@ -62,11 +62,11 @@ public class FServlet extends HttpServlet {
 			sb.append(line);
 		}
 		
-		try{
-			JSONObject langObj = (JSONObject) parser.parse(sb.toString());
-			String lang = (String) langObj.get("language");
-			request.setAttribute("language",lang);
-		}catch(Exception ex){}
+		//try{
+		//	JSONObject langObj = (JSONObject) parser.parse(sb.toString());
+		//	String lang = (String) langObj.get("language");
+			request.setAttribute("language",sb.toString());
+		//}catch(Exception ex){}
 		
 		sb = new StringBuilder();
 		
@@ -93,11 +93,11 @@ public class FServlet extends HttpServlet {
 		while ((line = reader.readLine()) != null){
 			sb.append(line);
 		}
-		try{
-			JSONObject titleObj = (JSONObject) parser.parse(sb.toString());
-			String title = (String) titleObj.get("title");
-			request.setAttribute("title",title);
-		}catch(Exception ex){}
+		//try{
+		//	JSONObject titleObj = (JSONObject) parser.parse(sb.toString());
+		//	String title = (String) titleObj.get("title");
+			request.setAttribute("title",sb.toString());
+		//}catch(Exception ex){}
 	
 
 		response.setContentType("text/html;charset=UTF-8");

@@ -16,7 +16,7 @@
             <label for="tab2"> Image Analysis </label>
             <div class ="content">
                 <div id ="content1">
-                    <form action="FServlet" method="POST">
+                    <form action="FServlet" method="GET">
                         <input type="text" name="furl" size="80">
                         <input type="submit" value="Extract">
                     </form> <br/>
@@ -47,7 +47,7 @@
 
                 </div>
                 <div id="content2">
-                    <form action="IServlet" method="POST">
+                    <form action="IServlet" method="GET">
                         <input type="text" name="gurl" size="80">
                         <input type="submit" value="Extract">
                     </form> <br/>

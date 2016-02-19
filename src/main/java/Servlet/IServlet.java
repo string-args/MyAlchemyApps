@@ -19,7 +19,7 @@ public class IServlet extends HttpServlet {
 	private String FACE_ENDPOINT_URL = "http://gateway-a.watsonplatform.net/calls/url/URLGetRankedImageFaceTags";
 
  @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 	
 		AlchemyConnector connector = new AlchemyConnector();
