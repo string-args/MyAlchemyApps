@@ -28,28 +28,7 @@ public class IServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 	
-		AlchemyConnector connector = new AlchemyConnector();
-        
-        AlchemyVision service = new AlchemyVision();
-        service.setApiKey(connector.getAPIKey());
-		
-		//get url inputted by user
-		String gurl = request.getParameter("gurl");
-		
-		URL image = new URL(gurl);
-		
-		//For imagefaces
-		ImageFaces faces = service.recognizeFaces(image,true);
-		
-		try{
-			JSONParser parser = new JSONParser();
-			//for title
-			JSONObject objfaces = (JSONObject) parser.parse(faces.toString());
-			request.setAttribute("imagefaces",objfaces);
 
-		} catch (Exception e) {
-			e.printStackTrace(System.err);
-		}
 		response.setContentType("text/html");
         response.setStatus(200);
         request.getRequestDispatcher("index.jsp").forward(request, response);
