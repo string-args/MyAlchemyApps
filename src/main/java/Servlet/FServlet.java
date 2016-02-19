@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import java.text.ParseException;
 
 
 @WebServlet(name = "FServlet", urlPatterns = {"/FServlet"})
@@ -25,7 +26,7 @@ public class FServlet extends HttpServlet {
 	
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException{
 		AlchemyConnector connector = new AlchemyConnector();
 		//AlchemyLanguage service = new AlchemyLanguage();
 		//service.setApiKey(connector.getAPIKey());
@@ -33,6 +34,8 @@ public class FServlet extends HttpServlet {
 		String input_url = (String) request.getParameter("furl");
 		StringBuilder sb = new StringBuilder();
 		String line;
+		
+		JSONParser parser = new JSONParser();
 		
 		URL taxonomy_url = new URL(TAXONOMY_ENDPOINT_URL+"?url="+input_url+"&apikey="+connector.getAPIKey()+"&outputMode=json");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(taxonomy_url.openStream()));
@@ -75,7 +78,11 @@ public class FServlet extends HttpServlet {
 		while ((line = reader.readLine()) != null){
 			sb.append(line);
 		}
-		request.setAttribute("title",sb.toString());
+		try{
+			JSONObject title_object = (JSONObject) parser.parse(sb.toString());
+			String title_parse = (String) title_object.get("title");
+			request.setAttribute("title",title_parse);
+		}catch(Exception ex){}
 		//Map<String,Object> params = new HashMap<String,Object>();
 		//params.put(AlchemyLanguage.URL, input_url);
 		
