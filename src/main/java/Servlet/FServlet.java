@@ -35,17 +35,14 @@ public class FServlet extends HttpServlet {
 		//params.put(AlchemyLanguage.URL, input_url);
 
 		URL url = new URL("http://gateway-a.watsonplatform.net/calls/url/URLGetRankedTaxonomy?url="+input_url+"&apikey="+connector.getAPIKey()+"&outputMode=json");
-		HttpURLConnection yc = (HttpURLConnection) url.openConnection();
-		BufferedReader rd = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+				
 		StringBuilder sb = new StringBuilder();
-		String line;
-		
-		while ((line = rd.readLine()) != null){
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
+		for (String line; (line = reader.readLine()) != null;) {
 			sb.append(line);
 		}
-		rd.close();
-		yc.disconnect();
-		
+}
+
 		//InputStream in = yc.getInputStream();
 		
 		
