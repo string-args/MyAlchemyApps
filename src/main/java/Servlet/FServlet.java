@@ -80,7 +80,12 @@ public class FServlet extends HttpServlet {
 		while ((line = reader.readLine()) != null){
 			sb.append(line);
 		}
-		request.setAttribute("title",sb.toString());
+		try{
+			JSONObject titleObj = (JSONObject) parser.parse(sb.toString());
+			String title = (String) titleObj.get("title");
+			request.setAttribute("title",title);
+		}catch(Exception ex){}
+	
 
 		response.setContentType("text/html;charset=UTF-8");
 		response.setStatus(200);
