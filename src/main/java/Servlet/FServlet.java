@@ -36,13 +36,10 @@ public class FServlet extends HttpServlet {
 
 		URL url = new URL("http://gateway-a.watsonplatform.net/calls/url/URLGetRankedTaxonomy?url="+input_url+"&apikey="+connector.getAPIKey()+"&outputMode=json");
 		URLConnection yc = url.openConnection();
-		BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+		InputStream in = yc.getInputStream();
 		
-		String outputLine;
-		String json_output = "";
-		while ((outputLine = in.readLine()) != null)
-			json_output.concat(outputLine);
-		in.close();
+		
+		
 		
 		//DocumentTitle title = service.getTitle(params);		
 		//DocumentAuthors authors = service.getAuthors(params);
@@ -50,7 +47,7 @@ public class FServlet extends HttpServlet {
 		//Taxonomies taxonomy = service.getTaxonomy(params);	
 		//DocumentSentiment sentiment = service.getSentiment(params);
 			
-		request.setAttribute("title",json_output);	
+		request.setAttribute("title",in.toString());	
 		response.setContentType("text/html;charset=UTF-8");
 		response.setStatus(200);
 		request.getRequestDispatcher("index.jsp").forward(request,response);		
