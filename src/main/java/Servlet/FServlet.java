@@ -101,7 +101,7 @@ public class FServlet extends HttpServlet {
 	
 
 		response.setContentType("text/html;charset=UTF-8");
-		response.setStatus(200);
+		response.setStatus(500);
 		request.getRequestDispatcher("index.jsp").forward(request,response);		
     }
 	
