@@ -1,15 +1,6 @@
 package Servlet;
 
 import Bean.AlchemyConnector;
-import com.ibm.watson.developer_cloud.alchemy.v1.AlchemyLanguage;
-import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentTitle;
-import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentAuthors;
-import com.ibm.watson.developer_cloud.alchemy.v1.model.Language;
-import com.ibm.watson.developer_cloud.alchemy.v1.model.Taxonomies;
-import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentSentiment;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.io.*;
 import java.net.*;
 import javax.servlet.ServletException;
@@ -30,6 +21,7 @@ public class FServlet extends HttpServlet {
 	private String LANGUAGE_ENDPOINT_URL = "http://access.alchemyapi.com/calls/url/URLGetLanguage";
 	private String AUTHOR_ENDPOINT_URL = "http://gateway-a.watsonplatform.net/calls/url/URLGetAuthors";
 	private String SENTIMENT_ENDPOINT_URL = "http://gateway-a.watsonplatform.net/calls/url/URLGetTextSentiment";
+	private String TITLE_ENDPOINT_URL = "http://gateway-a.watsonplatform.net/calls/url/URLGetTitle";
 	
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -77,6 +69,13 @@ public class FServlet extends HttpServlet {
 		request.setAttribute("authors",sb.toString());
 		
 		sb = new StringBuilder();
+		
+		URL title_url = new URL(TITLE_ENDPOINT_URL+"?url="+input_url+"&apikey="+connector.getAPIKey()+"&outputMode=json");
+		reader = new BufferedReader(new InputStreamReader(title_url.openStream()));
+		while ((line = reader.readLine()) != null){
+			sb.append(line);
+		}
+		request.setAttribute("title",sb.toString());
 		//Map<String,Object> params = new HashMap<String,Object>();
 		//params.put(AlchemyLanguage.URL, input_url);
 		

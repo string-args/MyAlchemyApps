@@ -1,15 +1,6 @@
 package Servlet;
 
 import Bean.AlchemyConnector;
-import com.ibm.watson.developer_cloud.alchemy.v1.AlchemyVision;
-import com.ibm.watson.developer_cloud.alchemy.v1.model.ImageFaces;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.io.*;
 import java.net.*;
 import javax.servlet.ServletException;

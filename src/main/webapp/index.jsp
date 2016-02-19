@@ -26,7 +26,7 @@
 						if (request.getAttribute("title") != null){
 							out.println("<h3>" + request.getAttribute("title") + "</h3>");
 						}
-						if (request.getAttribute("author") != null){
+						if (request.getAttribute("authors") != null){
 							out.println("<h3>" + request.getAttribute("author") + "</h3>");
 						}
 						if (request.getAttribute("language") != null){
