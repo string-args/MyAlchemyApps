@@ -48,7 +48,7 @@ public class FServlet extends HttpServlet {
 			sb.append(line);
 		}
 		request.setAttribute("taxonomy",sb.toString());
-		/*
+		
 		sb = new StringBuilder();
 		
 		URL language_url = new URL(LANGUAGE_ENDPOINT_URL+"?url="+input_url+"&apikey="+connector.getAPIKey()+"&outputMode=json");
@@ -83,7 +83,7 @@ public class FServlet extends HttpServlet {
 		
 		
 		//request.setAttribute("title",title);
-		*/
+		
 
 
 		response.setContentType("text/html;charset=UTF-8");
