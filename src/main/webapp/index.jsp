@@ -24,18 +24,23 @@
 					<%
 
 						if (request.getAttribute("title") != null){
+							out.println("<h2>Title</h2>"); 
 							out.println("<h3>" + request.getAttribute("title") + "</h3>");
 						}
 						if (request.getAttribute("authors") != null){
+							out.println("<h2>Authors</h2>"); 
 							out.println("<h3>" + request.getAttribute("author") + "</h3>");
 						}
 						if (request.getAttribute("language") != null){
+							out.println("<h2>Language</h2>"); 
 							out.println("<h3>" + request.getAttribute("language") + "</h3>");
 						}
 						if (request.getAttribute("taxonomy") != null){
+							out.println("<h2>Taxonomy</h2>"); 
 							out.println("<h3>" + request.getAttribute("taxonomy") + "</h3>");
 						}
 						if (request.getAttribute("sentiment") != null){
+							out.println("<h2>Sentiment</h2>"); 
 							out.println("<h3>" + request.getAttribute("sentiment") + "</h3>");
 						}
 					%>
