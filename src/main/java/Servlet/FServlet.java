@@ -43,7 +43,16 @@ public class FServlet extends HttpServlet {
 			sb.append(line);
 		}
 		
-		request.setAttribute("taxonomy",sb.toString());
+		try{
+			JSONObject taxObj = (JSONObject) parser.parse(sb.toString());
+			JSONArray taxarr = (JSONArray) taxObj.get("taxonomy");
+			String tax_list = "";
+			for (int i = 0; i < taxarr.size(); i++){
+					JSONObject arrint = (JSONObject) taxarr.get(i);
+					tax_list.concat(arrint.get("label") + " " + arrint.get("score") + " " + arrint.get("confident") + "\n");
+			}
+			request.setAttribute("taxonomy",tax_list);
+		}catch(Exception ex){}
 		
 		sb = new StringBuilder();
 		
