@@ -31,21 +31,13 @@ public class FServlet extends HttpServlet {
 		Map<String,Object> params = new HashMap<String,Object>();
 		params.put(AlchemyLanguage.URL, input_url);
 
-		DocumentTitle title = service.getTitle(params);
-		request.setAttribute("title", title);
-		
+		DocumentTitle title = service.getTitle(params);		
 		DocumentAuthors authors = service.getAuthors(params);
-		request.setAttribute("authors", authors);
-		
-		Language language = service.getLanguage(params);
-		request.setAttribute("language", language);
-		
-		//Taxonomies taxonomy = service.getTaxonomy(params);
-		//request.setAttribute("taxonomy", taxonomy);
-		
+		Language language = service.getLanguage(params);	
+		//Taxonomies taxonomy = service.getTaxonomy(params);	
 		DocumentSentiment sentiment = service.getSentiment(params);
-		request.setAttribute("sentiment",sentiment);
 			
+		request.setAttribute("title",title);	
 		response.setContentType("text/html;charset=UTF-8");
 		response.setStatus(200);
 		request.getRequestDispatcher("index.jsp").forward(request,response);		
