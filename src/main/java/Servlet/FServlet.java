@@ -34,7 +34,7 @@ public class FServlet extends HttpServlet {
 		//Map<String,Object> params = new HashMap<String,Object>();
 		//params.put(AlchemyLanguage.URL, input_url);
 
-		URL url = new URL("http://gateway-a.watsonplatform.net/calls/url/URLGetRankedTaxonomy?url="+input_url+"&apikey=c0659d73365193a78936037a46b1a27c6863a893");
+		URL url = new URL("http://gateway-a.watsonplatform.net/calls/url/URLGetRankedTaxonomy?url="+input_url+"&apikey=c0659d73365193a78936037a46b1a27c6863a893&outputMode=json");
 				
 		StringBuilder sb = new StringBuilder();
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
