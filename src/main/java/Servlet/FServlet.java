@@ -42,16 +42,8 @@ public class FServlet extends HttpServlet {
 		while ((line = reader.readLine()) != null){
 			sb.append(line);
 		}
-		try{
-			JSONObject taxonomy_object = (JSONObject) parser.parse(sb.toString());
-			JSONArray taxonomy_array = (JSONArray) taxonomy_object.get("taxnomony");
-			String taxonomy_list = "";
-			for (int i = 0; i < taxonomy_array.size(); i++){
-				taxonomy_list.concat((String) taxonomy_array.get(i));
-			}
-			request.setAttribute("taxonomy",taxonomy_list);
-		}catch(Exception ex){}
-
+		
+		request.setAttribute("taxonomy",sb.toString());
 		
 		sb = new StringBuilder();
 		
@@ -60,12 +52,8 @@ public class FServlet extends HttpServlet {
 		while ((line = reader.readLine()) != null){
 			sb.append(line);
 		}
-		try{
-			JSONObject language_object = (JSONObject) parser.parse(sb.toString());
-			String language_parse = (String) language_object.get("language");
-			request.setAttribute("language",language_parse);
-		}catch (Exception ex) {}
-
+		
+		request.setAttribute("language",sb.toString());
 		
 		sb = new StringBuilder();
 		
@@ -83,16 +71,7 @@ public class FServlet extends HttpServlet {
 		while ((line = reader.readLine()) != null){
 			sb.append(line);
 		}
-		try{
-			JSONObject author_object = (JSONObject) parser.parse(sb.toString());
-			JSONArray author_array = (JSONArray) author_object.get("authors");
-			String author_list = "";
-			for (int i = 0; i < author_array.size(); i++){
-				author_list.concat(author_array.get(i) + ", ");
-			}
-			request.setAttribute("authors",author_list);
-		}catch(Exception ex){}
-
+		request.setAttribute("authors",sb.toString());
 		
 		sb = new StringBuilder();
 		
@@ -101,19 +80,7 @@ public class FServlet extends HttpServlet {
 		while ((line = reader.readLine()) != null){
 			sb.append(line);
 		}
-		try{
-			JSONObject title_object = (JSONObject) parser.parse(sb.toString());
-			String title_parse = (String) title_object.get("title");
-			request.setAttribute("title",title_parse);
-		}catch(Exception ex){}
-		//Map<String,Object> params = new HashMap<String,Object>();
-		//params.put(AlchemyLanguage.URL, input_url);
-		
-		
-		
-		//request.setAttribute("title",title);
-		
-
+		request.setAttribute("title",sb.toString());
 
 		response.setContentType("text/html;charset=UTF-8");
 		response.setStatus(200);
