@@ -53,7 +53,11 @@ public class FServlet extends HttpServlet {
 			sb.append(line);
 		}
 		
-		request.setAttribute("language",sb.toString());
+		try{
+			JSONObject langObj = (JSONObject) parser.parse(sb.toString());
+			String lang = (String) langObj.get("language");
+			request.setAttribute("language",lang);
+		}catch(Exception ex){}
 		
 		sb = new StringBuilder();
 		
