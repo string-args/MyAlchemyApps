@@ -42,7 +42,16 @@ public class FServlet extends HttpServlet {
 		while ((line = reader.readLine()) != null){
 			sb.append(line);
 		}
-		request.setAttribute("taxonomy",sb.toString());
+		try{
+			JSONObject taxonomy_object = (JSONObject) parser.parse(sb.toString());
+			JSONArray taxonomy_array = (JSONArray) taxonomy_object.get("taxnomony");
+			String taxonomy_list = "";
+			for (int i = 0; i < taxonomy_array.size(); i++){
+				taxonomy_list.concat((String) taxonomy_array.get(i));
+			}
+			request.setAttribute("taxonomy",taxonomy_list);
+		}catch(Exception ex){}
+
 		
 		sb = new StringBuilder();
 		
@@ -51,7 +60,12 @@ public class FServlet extends HttpServlet {
 		while ((line = reader.readLine()) != null){
 			sb.append(line);
 		}
-		request.setAttribute("language",sb.toString());
+		try{
+			JSONObject language_object = (JSONObject) parser.parse(sb.toString());
+			String language_parse = (String) language_object.get("language");
+			request.setAttribute("language",language_parse);
+		}catch (Exception ex) {}
+
 		
 		sb = new StringBuilder();
 		
@@ -69,7 +83,16 @@ public class FServlet extends HttpServlet {
 		while ((line = reader.readLine()) != null){
 			sb.append(line);
 		}
-		request.setAttribute("authors",sb.toString());
+		try{
+			JSONObject author_object = (JSONObject) parser.parse(sb.toString());
+			JSONArray author_array = (JSONArray) author_object.get("authors");
+			String author_list = "";
+			for (int i = 0; i < author_array.size(); i++){
+				author_list.concat(author_array.get(i) + ", ");
+			}
+			request.setAttribute("authors",author_list);
+		}catch(Exception ex){}
+
 		
 		sb = new StringBuilder();
 		
