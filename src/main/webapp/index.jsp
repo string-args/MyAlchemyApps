@@ -43,7 +43,7 @@
                 </div>
                 <div id="content2">
                     <form action="IServlet" method="POST">
-                        <input type="text" name="gurl" value="http://aib.edu.au/blog/wp-content/uploads/2015/08/bill-gates-jpg.jpg" size="80">
+                        <input type="text" name="gurl" size="80">
                         <input type="submit" value="Extract">
                     </form> <br/>
 					<%
