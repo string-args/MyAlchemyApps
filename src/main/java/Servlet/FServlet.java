@@ -2,7 +2,7 @@ package Servlet;
 
 import Bean.AlchemyConnector;
 import com.ibm.watson.developer_cloud.alchemy.v1.AlchemyLanguage;
-import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentSentiment;
+import com.ibm.watson.developer_cloud.alchemy.v1.model.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,16 +23,27 @@ public class FServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 		AlchemyConnector connector = new AlchemyConnector();
-		AlchemyLanguage al_service = new AlchemyLanguage();
-		al_service.setApiKey(connector.getAPIKey());
+		AlchemyLanguage service = new AlchemyLanguage();
+		service.setApiKey(connector.getAPIKey());
 		
 		String input_url = (String) request.getAttribute("furl");
 
 		Map<String,Object> params = new HashMap<String,Object>();
-		params.put(AlchemyLanguage.TEXT, "IBM Watson won the Jeopardy television show hosted by Alex Trebek");
+		params.put(AlchemyLanguage.URL, input_url);
 
-		DocumentSentiment sentiment = al_service.getSentiment(params);
+		DocumentTitle title = service.getTitle(params);
+		request.setAttribute("title", title);
 		
+		DocumentAuthors authors = service.getAuthors(params);
+		request.setAttribute("authors", authors);
+		
+		Language language = service.getLanguage(params);
+		request.setAttribute("language", language);
+		
+		//Taxonomies taxonomy = service.getTaxonomy(params);
+		//request.setAttribute("taxonomy", taxonomy);
+		
+		DocumentSentiment sentiment = service.getSentiment(params);
 		request.setAttribute("sentiment",sentiment);
 			
 		response.setContentType("text/html;charset=UTF-8");

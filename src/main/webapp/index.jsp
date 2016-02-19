@@ -22,6 +22,18 @@
                     </form> <br/>
 					
 					<%
+						if (request.getAttribute("title") != null){
+							out.println("<h3>" + request.getAttribute("title") + "</h3>");
+						}
+						if (request.getAttribute("author") != null){
+							out.println("<h3>" + request.getAttribute("author") + "</h3>");
+						}
+						if (request.getAttribute("language") != null){
+							out.println("<h3>" + request.getAttribute("language") + "</h3>");
+						}
+						if (request.getAttribute("taxonomy") != null){
+							out.println("<h3>" + request.getAttribute("taxonomy") + "</h3>");
+						}
 						if (request.getAttribute("sentiment") != null){
 							out.println("<h3>" + request.getAttribute("sentiment") + "</h3>");
 						}
