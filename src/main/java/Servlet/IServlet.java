@@ -2,7 +2,7 @@ package Servlet;
 
 import Bean.AlchemyConnector;
 import com.ibm.watson.developer_cloud.alchemy.v1.AlchemyVision;
-import com.ibm.watson.developer_cloud.alchemy.v1.model.*;
+import com.ibm.watson.developer_cloud.alchemy.v1.model.ImageFaces;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,10 +33,9 @@ public class IServlet extends HttpServlet {
 		service.setApiKey(connector.getAPIKey());
 		
 		String input_url = (String) request.getAttribute("gurl");
-		URL url = new URL(input_url);
-		
-		ImageFaces image_faces = service.recognizeFaces(url,false);
-		request.setAttribute("image_faces",image_faces);
+
+		//ImageFaces image_faces = service.recognizeFaces(input_url,false);
+		//request.setAttribute("image_faces",image_faces);
 	
 		response.setContentType("text/html");
         response.setStatus(200);

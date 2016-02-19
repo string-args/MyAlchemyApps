@@ -2,7 +2,11 @@ package Servlet;
 
 import Bean.AlchemyConnector;
 import com.ibm.watson.developer_cloud.alchemy.v1.AlchemyLanguage;
-import com.ibm.watson.developer_cloud.alchemy.v1.model.*;
+import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentTitle;
+import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentAuthors;
+import com.ibm.watson.developer_cloud.alchemy.v1.model.Language;
+import com.ibm.watson.developer_cloud.alchemy.v1.model.Taxonomies;
+import com.ibm.watson.developer_cloud.alchemy.v1.model.DocumentSentiment;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
