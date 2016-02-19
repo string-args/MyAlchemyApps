@@ -26,28 +26,35 @@ import org.json.simple.parser.JSONParser;
 @WebServlet(name = "FServlet", urlPatterns = {"/FServlet"})
 public class FServlet extends HttpServlet {
 
+	private String TAXONOMY_ENPOINT_URL = "http://gateway-a.watsonplatform.net/calls/url/URLGetRankedTaxonomy";
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 		AlchemyConnector connector = new AlchemyConnector();
-		AlchemyLanguage service = new AlchemyLanguage();
-		service.setApiKey(connector.getAPIKey());
+		//AlchemyLanguage service = new AlchemyLanguage();
+		//service.setApiKey(connector.getAPIKey());
 		
 		String input_url = (String) request.getParameter("furl");
-
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put(AlchemyLanguage.URL, input_url);
-		DocumentTitle title = service.getTitle(params);
-		DocumentAuthors authors = service.getAuthors(params);
-		Language language = service.getLanguage(params);
-		//Taxonomies taxonomy = service.getTaxonomy(params);
-		DocumentSentiment sentiment = service.getSentiment(params);
+		StringBuilder sb = new StringBuilder();
+		String line;
 		
-		request.setAttribute("title",title);
-		request.setAttribute("authors",authors);
-		request.setAttribute("language",language);
-		//request.setAttribute("taxonomy",taxonomy);
-		request.setAttribute("sentiment",sentiment);
+		URL taxonomy_url = new URL(TAXONOMY_ENPOINT_URL+"?url="+input_url+"&apikey="+connector.getAPIKey()+"&outputMode=json");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(taxonomy_url.openStream()));
+		while ((line = reader.readLine()) != null){
+			sb.append(line);
+		}
+		request.setAttribute("taxonomy",sb.toString());
+		//Map<String,Object> params = new HashMap<String,Object>();
+		//params.put(AlchemyLanguage.URL, input_url);
+		
+		
+		
+		//request.setAttribute("title",title);
+		//request.setAttribute("authors",authors);
+		//request.setAttribute("language",language);
+
+		//request.setAttribute("sentiment",sentiment);
 
 		response.setContentType("text/html;charset=UTF-8");
 		response.setStatus(200);
