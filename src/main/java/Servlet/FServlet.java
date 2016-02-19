@@ -15,10 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 
 @WebServlet(name = "FServlet", urlPatterns = {"/FServlet"})
 public class FServlet extends HttpServlet {
@@ -33,7 +29,7 @@ public class FServlet extends HttpServlet {
 		String input_url = (String) request.getAttribute("furl");
 
 		Map<String,Object> params = new HashMap<String,Object>();
-		params.put(AlchemyLanguage.URL,input_url);
+		params.put(AlchemyLanguage.TEXT, "IBM Watson won the Jeopardy television show hosted by Alex Trebek");
 
 		DocumentSentiment sentiment = al_service.getSentiment(params);
 		
